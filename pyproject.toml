@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nn-interpretation"
+version = "0.1.0"
+description = "Modular package for sinusoidal signal denoising and weight visualization."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "NN-Interpretation" }
+]
+dependencies = [
+  "numpy>=1.24",
+  "torch>=2.0",
+  "matplotlib>=3.7"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.4"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
