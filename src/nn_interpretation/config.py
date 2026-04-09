@@ -34,6 +34,6 @@ class TrainingConfig:
     learning_rate: float = 1e-3
     optimizer: str = "adam"
     loss: str = "mse"
-    device: str = "cpu"
+    device: str = "auto"
     seed: int | None = None
 

@@ -29,3 +29,14 @@ def test_train_smoke_reduces_loss():
     assert len(history["train_loss"]) == 4
     assert history["train_loss"][-1] < history["train_loss"][0]
 
+
+def test_train_smoke_auto_device():
+    clean = generate_clean_signals(num_signals=16, signal_length=32, seed=0)
+    noisy = add_gaussian_noise(clean, sigma=0.2, seed=1)
+    train_loader = build_dataloader(noisy, clean, batch_size=8, shuffle=False)
+
+    model = build_mlp_denoiser(input_dim=32, hidden_dims=[16], bias=False)
+    config = TrainingConfig(epochs=1, learning_rate=1e-3, optimizer="adam", loss="mse", device="auto", seed=0)
+    history = train_denoiser(model, train_loader, config=config)
+    assert len(history["train_loss"]) == 1
+

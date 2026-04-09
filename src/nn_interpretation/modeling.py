@@ -11,6 +11,15 @@ from torch.utils.data import DataLoader
 from .config import TrainingConfig
 
 
+def _resolve_device(device_name: str) -> torch.device:
+    requested = device_name.lower().strip()
+    if requested == "auto":
+        return torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if requested == "cuda" and not torch.cuda.is_available():
+        raise ValueError("CUDA was requested but is not available on this machine.")
+    return torch.device(requested)
+
+
 def build_mlp_denoiser(
     input_dim: int,
     hidden_dims: Iterable[int],
@@ -87,7 +96,7 @@ def train_denoiser(
     if config.seed is not None:
         torch.manual_seed(config.seed)
 
-    device = torch.device(config.device)
+    device = _resolve_device(config.device)
     model = model.to(device)
     criterion = _build_loss(config)
     optimizer = _build_optimizer(model, config)

@@ -43,7 +43,7 @@ def main() -> None:
     train_loader = build_dataloader(loaded["noisy"], loaded["clean"], batch_size=64, shuffle=True)
 
     model = build_mlp_denoiser(input_dim=signal_length, hidden_dims=[256, 128, 256], activation="relu", bias=False)
-    config = TrainingConfig(epochs=10, learning_rate=1e-3, optimizer="adam", loss="mse", device="cpu", seed=123)
+    config = TrainingConfig(epochs=10, learning_rate=1e-3, optimizer="adam", loss="mse", device="auto", seed=123)
     history = train_denoiser(model, train_loader, config=config)
 
     weights = extract_weight_matrices(model)
