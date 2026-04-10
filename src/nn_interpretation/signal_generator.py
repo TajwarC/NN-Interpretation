@@ -16,10 +16,10 @@ def generate_signals(num_instances: int, start: int, end: int, step: int, noise_
         y_noisy = y+noise
         clean[i,:] = y
         noisy[i,:] = y_noisy
-        x_data = torch.tensor(noisy, dtype=torch.float32)
-        y_data = torch.tensor(clean, dtype=torch.float32)
+    x_data = torch.tensor(noisy, dtype=torch.float32)
+    y_data = torch.tensor(clean, dtype=torch.float32)
         
-        return x_data, y_data
+    return x_data, y_data
 
 
 
