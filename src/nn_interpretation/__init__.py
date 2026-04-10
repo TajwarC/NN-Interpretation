@@ -6,6 +6,7 @@ from .modeling import build_mlp_denoiser, train_denoiser
 from .noise import add_gaussian_noise
 from .signals import generate_clean_signals
 from .visualization import extract_weight_matrices, plot_weight_matrices
+from .signal_generator import generate_signals
 
 __all__ = [
     "DataGenLimits",
@@ -21,5 +22,6 @@ __all__ = [
     "generate_clean_signals",
     "extract_weight_matrices",
     "plot_weight_matrices",
+    "generate_signals"
 ]
 
