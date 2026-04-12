@@ -1,7 +1,3 @@
-'''
-Placeholder file for descrambling code. 
-'''
-
 import numpy as np
 from scipy.optimize import minimize
 from scipy.linalg import toeplitz, inv, norm
